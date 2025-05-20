@@ -12,7 +12,12 @@ export const findUserByUsername = async (username) => {
   return await userRepository.findOneBy({ username });
 };
 
+export const findUserByEmail = async (email) => {
+  return await userRepository.findOneBy({ email });
+};
+
 export default {
   createUser,
   findUserByUsername,
+  findUserByEmail,
 };

@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { registerUser } from '../../Controllers/userController.js';
+import { registerUser, loginController } from '../../Controllers/userController.js';
 
 
 
@@ -10,7 +10,7 @@ const userRouter = express.Router();
 
 userRouter.post('/register', registerUser);
 
-// userRouter.post('/signin',  validate(zodSigninSchema), signin);
+userRouter.post('/login', loginController);
 
 // userRouter.delete('/:id', isAuthenticated, deleteUser);
 
