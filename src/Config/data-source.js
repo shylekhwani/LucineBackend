@@ -1,6 +1,7 @@
 
 import { DataSource } from "typeorm";
 import userSchema from "../Schema/userSchema.js";
+import softwareSchema from "../Schema/softwareSchema.js";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +12,7 @@ const AppDataSource = new DataSource({
   database: "assignment_db",
   synchronize: true,
   logging: true,
-  entities: [userSchema],
+  entities: [userSchema, softwareSchema],
 });
 
 export default AppDataSource;
