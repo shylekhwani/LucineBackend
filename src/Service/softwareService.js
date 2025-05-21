@@ -1,4 +1,5 @@
 import softwareRepository from "../Repository/softwareRepository.js";
+import { getAllSoftware } from "../Repository/softwareRepository.js";
 
 export const createSoftware = async (softwareData, userRole) => {
   if (userRole !== "Admin") {
@@ -19,4 +20,10 @@ export const createSoftware = async (softwareData, userRole) => {
   };
 
   return await softwareRepository.createSoftware(newSoftware);
+};
+
+
+export const getAllSoftwareService = async () => {
+  const softwares = await getAllSoftware();
+  return softwares;
 };

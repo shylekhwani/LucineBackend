@@ -12,7 +12,7 @@ const server = createServer(app);
 
 app.use(cors({
   origin: ["http://localhost:5173", "http://localhost:3000"], // Allow localhost (adjust based on your frontend port)
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE, PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "x-access-token"], // Explicitly allow x-access-token
   credentials: true // If using cookies for authentication
 }));

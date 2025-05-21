@@ -1,4 +1,4 @@
-import { createSoftware } from "../Service/softwareService.js";
+import { createSoftware, getAllSoftwareService } from "../Service/softwareService.js";
 
 export const handleCreateSoftware = async (req, res) => {
   try {
@@ -12,6 +12,22 @@ export const handleCreateSoftware = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: error.message || "Failed to create software",
+    });
+  }
+};
+
+export const getAllSoftwareController = async (req, res) => {
+  try {
+    const softwares = await getAllSoftwareService();
+    res.status(200).json({
+      success: true,
+      data: softwares,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch software list',
+      error: error.message,
     });
   }
 };

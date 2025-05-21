@@ -12,7 +12,12 @@ export const findSoftwareByName = async (name) => {
   return await softwareRepository.findOneBy({ name });
 };
 
+export const getAllSoftware = async () => {
+  return await softwareRepository.find();
+};
+
 export default {
   createSoftware,
   findSoftwareByName,
+  getAllSoftware,
 };
