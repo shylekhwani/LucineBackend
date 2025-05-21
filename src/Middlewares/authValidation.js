@@ -10,7 +10,7 @@ export const isAuthenticated = async function (req, res, next) {
             message: 'Token is required'
         });
     }
-
+    console.log("Token received:", token);
     try {
         const decoded = await verifyToken(token);
         console.log("Decoded token:", decoded);
@@ -51,4 +51,19 @@ export const isAdmin = async function (req, res, next) {
     });
   }  
   next();
+};
+
+export const isManager = (req, res, next) => {
+  try {
+    const user = req.user;
+    if (user.role !== 'Manager') {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied. Only managers can perform this action.'
+      });
+    }
+    next();
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
 };

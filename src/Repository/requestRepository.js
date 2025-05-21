@@ -20,7 +20,7 @@ const createRequest = async (data) => {
   };
 
  const updateRequestStatus = async (id, status) => {
-    await requestRepo.update(id, { status });
+    await requestRepository.update(id, { status });
     return await requestRepository.findOneBy({ id });
   };
 
