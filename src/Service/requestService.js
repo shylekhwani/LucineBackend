@@ -23,3 +23,9 @@ export const getRequestByIdService = async (id) => {
 export const updateRequestStatusService = async (id, status) => {
     return await requestRepository.updateRequestStatus(id, status);
 };
+
+export const getCurrentUserRequestsService = async (userId) => {
+  const requests = await requestRepository.getCurrentUserRequests(userId);
+  if (!requests) throw new Error("No requests found for this user");
+  return requests;
+};

@@ -24,9 +24,19 @@ const createRequest = async (data) => {
     return await requestRepository.findOneBy({ id });
   };
 
+  const getCurrentUserRequests = async (userId) => {
+    return await requestRepository.find({
+    where: {
+      user: { id: userId },
+    },
+    relations: ["software", "user"],
+  });
+  }
+
 export default {
   createRequest,
   getAllRequests,
   getRequestById,
-  updateRequestStatus
+  updateRequestStatus,
+  getCurrentUserRequests
 };

@@ -1,4 +1,4 @@
-import { submitAccessRequest, getAllRequestsService, getRequestByIdService, updateRequestStatusService } from "../Service/requestService.js";
+import { submitAccessRequest, getAllRequestsService, getRequestByIdService, updateRequestStatusService, getCurrentUserRequestsService } from "../Service/requestService.js";
 import AppDataSource from "../Config/data-source.js";
 import userSchema from "../Schema/userSchema.js";
 import softwareSchema from "../Schema/softwareSchema.js";
@@ -52,4 +52,23 @@ export const updateStatusController = async (req, res) => {
     } catch (err) {
       res.status(500).json({ success: false, message: err.message });
     }
+};
+
+export const getCurrentRequestsController = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log("User ID:", userId); // Debugging line
+    const myRequests = await getCurrentUserRequestsService(userId);
+
+    res.status(200).json({
+      success: true,
+      data: myRequests,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching user requests",
+      error: err.message,
+    });
+  }
 };
